@@ -1,0 +1,16 @@
+{
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "$CLUSTER_FQDN.",
+        "Type": "A",
+        "AliasTarget": {
+          "DNSName": "$NGINX_INGRESS_URL",
+          "EvaluateTargetHealth": true,
+          "HostedZoneId": "$NGINX_INGRESS_HOSTED_ZONE_ID"
+        }
+      }
+    }
+  ]
+}

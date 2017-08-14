@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    ingress.kubernetes.io/ssl-redirect: "true"
+
+spec:
+  rules:
+    - host: $CLUSTER_FQDN
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: $PREFIX-haproxy
+            servicePort: 80
+
+  tls:
+    # With this configuration kube-lego will generate a secret
+    # called e.g. 'tls-canary' for the URL 'canary.example.com'
+    - hosts:
+        - $CLUSTER_FQDN
+      secretName: tls-$CLUSTER_NAME

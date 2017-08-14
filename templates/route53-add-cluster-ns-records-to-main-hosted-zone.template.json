@@ -1,0 +1,13 @@
+{
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "$CLUSTER_FQDN.",
+        "Type": "NS",
+        "TTL": 300,
+        "ResourceRecords": $CLUSTER_NS_RECORDS
+      }
+    }
+  ]
+}
